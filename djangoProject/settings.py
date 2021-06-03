@@ -100,11 +100,11 @@ WSGI_APPLICATION = 'djangoProject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': '11',
-        'USER': 'postgres',
-        'PASSWORD': '123',
-        'HOST': '127.0.0.1',
-        'PORT': '5432'
+        'NAME': test',
+        'USER': 'test',
+        'PASSWORD': 'test',
+        'HOST': '',
+        'PORT': ''
     }
 }
 
