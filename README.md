@@ -1,4 +1,4 @@
-# DjangoProjectTest
+# DjangoProject 
 Тестовое задание (Django Rest Framework)
 
 get/typeModel/ - получить данные об объектах данного типа * 
