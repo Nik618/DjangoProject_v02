@@ -1,0 +1,8 @@
+body {
+    font-family: Impact, fantasy;
+    background: url("../images/background.jpg")
+    no-repeat;
+    background-size: 100%;
+}
+h1 {color:navy;}
+img {width:700px;}
