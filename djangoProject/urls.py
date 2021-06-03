@@ -17,6 +17,5 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('', include('main.urls')),  # а тут мы указали вложенный список маршрутов. Так проще, когда маршрутов много.
 ]

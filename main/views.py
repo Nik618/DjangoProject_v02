@@ -31,17 +31,7 @@ class GetCountry(generics.ListAPIView):
     serializer_class = CountrySerializer
 
 
-class AddCountry(generics.CreateAPIView):
-    queryset = Country.objects.all()
-    serializer_class = CountrySerializer
-
-
-class SetCountry(generics.RetrieveUpdateAPIView):
-    queryset = Country.objects.all()
-    serializer_class = CountrySerializer
-
-
-class DelCountry(generics.RetrieveDestroyAPIView):
+class SetCountry(generics.RetrieveUpdateDestroyAPIView):
     queryset = Country.objects.all()
     serializer_class = CountrySerializer
 
@@ -51,17 +41,7 @@ class GetTown(generics.ListAPIView):
     serializer_class = TownSerializer
 
 
-class AddTown(generics.CreateAPIView):
-    queryset = Town.objects.all()
-    serializer_class = TownSerializer
-
-
-class SetTown(generics.RetrieveUpdateAPIView):
-    queryset = Town.objects.all()
-    serializer_class = TownSerializer
-
-
-class DelTown(generics.RetrieveDestroyAPIView):
+class SetTown(generics.RetrieveUpdateDestroyAPIView):
     queryset = Town.objects.all()
     serializer_class = TownSerializer
 
@@ -71,19 +51,10 @@ class GetCapital(generics.ListAPIView):
     serializer_class = CapitalSerializer
 
 
-class AddCapital(generics.CreateAPIView):
+class SetCapital(generics.RetrieveUpdateDestroyAPIView):
     queryset = Capital.objects.all()
     serializer_class = CapitalSerializer
 
-
-class SetCapital(generics.RetrieveUpdateAPIView):
-    queryset = Capital.objects.all()
-    serializer_class = CapitalSerializer
-
-
-class DelCapital(generics.RetrieveDestroyAPIView):
-    queryset = Capital.objects.all()
-    serializer_class = CapitalSerializer
 
     # def get_queryset(self):
     #    queryset = Town.objects.all()
@@ -105,14 +76,14 @@ class getTownInArea(generics.ListAPIView):  # вывести объекты, н�
     queryset = Town.objects.all()
     serializer_class = TownSerializer
 
-    def getC(self, c: str) -> tuple:
+    def getCoordinates(self, c: str) -> tuple:
         return tuple(float(i) for i in c.split(','))
 
     def get(self, request, c1, c2, c3, c4):
-        c1 = self.getC(c1)
-        c2 = self.getC(c2)
-        c3 = self.getC(c3)
-        c4 = self.getC(c4)
+        c1 = self.getCoordinates(c1)
+        c2 = self.getCoordinates(c2)
+        c3 = self.getCoordinates(c3)
+        c4 = self.getCoordinates(c4)
         search_area = MultiPolygon(Polygon((c1, c2, c3, c4, c1,)))
         paginator = GeoJsonPagination()
         paginator.page_size = 3
@@ -126,14 +97,14 @@ class getCountryInArea(generics.ListAPIView):  # вывести объекты, 
     queryset = Country.objects.all()
     serializer_class = CountrySerializer
 
-    def getC(self, c: str) -> tuple:
+    def getCoordinates(self, c: str) -> tuple:
         return tuple(float(i) for i in c.split(','))
 
     def get(self, request, c1, c2, c3, c4):
-        c1 = self.getC(c1)
-        c2 = self.getC(c2)
-        c3 = self.getC(c3)
-        c4 = self.getC(c4)
+        c1 = self.getCoordinates(c1)
+        c2 = self.getCoordinates(c2)
+        c3 = self.getCoordinates(c3)
+        c4 = self.getCoordinates(c4)
         search_area = MultiPolygon(Polygon((c1, c2, c3, c4, c1,)))
         paginator = GeoJsonPagination()
         paginator.page_size = 3
@@ -147,14 +118,14 @@ class getCapitalInArea(generics.ListAPIView):  # вывести объекты, 
     queryset = Capital.objects.all()
     serializer_class = CapitalSerializer
 
-    def getC(self, c: str) -> tuple:
+    def getCoordinates(self, c: str) -> tuple:
         return tuple(float(i) for i in c.split(','))
 
     def get(self, request, c1, c2, c3, c4):
-        c1 = self.getC(c1)
-        c2 = self.getC(c2)
-        c3 = self.getC(c3)
-        c4 = self.getC(c4)
+        c1 = self.getCoordinates(c1)
+        c2 = self.getCoordinates(c2)
+        c3 = self.getCoordinates(c3)
+        c4 = self.getCoordinates(c4)
         search_area = MultiPolygon(Polygon((c1, c2, c3, c4, c1,)))
         paginator = GeoJsonPagination()
         paginator.page_size = 3
@@ -164,18 +135,18 @@ class getCapitalInArea(generics.ListAPIView):  # вывести объекты, 
         return paginator.get_paginated_response(serializer.data)
 
 
-class getS(generics.ListAPIView):  # вывести площадь
+class getSquare(generics.ListAPIView):  # вывести площадь
     queryset = Town.objects.all()
     serializer_class = TownSerializer
 
-    def getC(self, c: str) -> tuple:
+    def getCoordinates(self, c: str) -> tuple:
         return tuple(float(i) for i in c.split(','))
 
     def get(self, request, c1, c2, c3, c4):
-        c1 = self.getC(c1)
-        c2 = self.getC(c2)
-        c3 = self.getC(c3)
-        c4 = self.getC(c4)
+        c1 = self.getCoordinates(c1)
+        c2 = self.getCoordinates(c2)
+        c3 = self.getCoordinates(c3)
+        c4 = self.getCoordinates(c4)
         search_area = MultiPolygon(Polygon((c1, c2, c3, c4, c1,)))
         paginator = GeoJsonPagination()
         paginator.page_size = 3
